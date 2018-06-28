@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uowee.android.screen">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +22,9 @@
         </activity>
         <activity android:name=".capture.CaptureActivity"></activity>
         <activity android:name=".record.RecorderActivity"></activity>
+        <activity android:name=".video.VideoActivity"></activity>
+
+        <service android:name=".video.rtsp.RtspServer"></service>
     </application>
 
 </manifest>

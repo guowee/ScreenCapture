@@ -6,18 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.VideoView;
 
 import com.uowee.android.screen.capture.CaptureActivity;
 import com.uowee.android.screen.record.RecorderActivity;
+import com.uowee.android.screen.video.VideoActivity;
 
 public class StartActivity extends ListActivity {
     private String[] mTitles = new String[]{
             CaptureActivity.class.getSimpleName(),
-            RecorderActivity.class.getSimpleName()
+            RecorderActivity.class.getSimpleName(),
+            VideoActivity.class.getSimpleName()
     };
     private Class[] mActivities = new Class[]{
             CaptureActivity.class,
-            RecorderActivity.class
+            RecorderActivity.class,
+            VideoActivity.class
     };
 
     @Override
