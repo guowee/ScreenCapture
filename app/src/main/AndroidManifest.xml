@@ -22,7 +22,8 @@
         </activity>
         <activity android:name=".capture.CaptureActivity"></activity>
         <activity android:name=".record.RecorderActivity"></activity>
-        <activity android:name=".video.VideoActivity"></activity>
+        <activity android:name=".video.RtspActicity"></activity>
+        <activity android:name=".live.RtmpActivity"></activity>
 
         <service android:name=".video.rtsp.RtspServer"></service>
     </application>

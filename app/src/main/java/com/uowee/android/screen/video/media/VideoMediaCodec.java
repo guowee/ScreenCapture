@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.Surface;
 
 import com.uowee.android.screen.video.Constant;
-import com.uowee.android.screen.video.VideoActivity;
+import com.uowee.android.screen.video.RtspActicity;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -86,6 +86,7 @@ public class VideoMediaCodec extends MediaCodecBase {
                     } catch (InterruptedException e) {
                     }
                 } else if (index >= 0) {
+                    //获取每一个NALU,即每一帧
                     ByteBuffer outputBuffer = mEncoder.getOutputBuffers()[index];
                     byte[] outData = new byte[mBufferInfo.size];
                     outputBuffer.get(outData);
@@ -94,20 +95,24 @@ public class VideoMediaCodec extends MediaCodecBase {
                             + ", presentationTimeUs=" + mBufferInfo.presentationTimeUs
                             + ", offset=" + mBufferInfo.offset + ", flags=" + mBufferInfo.flags);
                     if (outputBuffer != null) {
-                        int type = outputBuffer.get(4) & 0x07;
-                        if (mBufferInfo.flags == 2) {
-                            Log.e("TAG", "--------FLAGS = 2, TYPE------" + type + ", ----BUFFER SIZE----" + mBufferInfo.size);
+                        int type = outputBuffer.get(4) & 0x1F;
+                        Log.e("TAG", "Buffer.get(4): " + outputBuffer.get(4));
+                        if (type == 7 || type == 8) {
+                            //提取SPS 和 PPS
+                            Log.e("TAG", "--------SPS & PPS FLAGS = " + mBufferInfo.flags);
                             configbyte = new byte[mBufferInfo.size];
                             configbyte = outData;
-                        } else if (mBufferInfo.flags == 1) {
-                            Log.e("TAG", "--------FLAGS = 1, TYPE------" + type + ", ----BUFFER SIZE----" + mBufferInfo.size);
+                        } else if (type == 5) {
+                            // 关键帧，并在关键帧前面添加SPS 和 PPS
+                            Log.e("TAG", "--------IDR FLAGS = " + mBufferInfo.flags);
                             byte[] keyframe = new byte[mBufferInfo.size + configbyte.length];
                             System.arraycopy(configbyte, 0, keyframe, 0, configbyte.length);
                             System.arraycopy(outData, 0, keyframe, configbyte.length, outData.length);
 
-                            VideoActivity.putData(keyframe, 1, mBufferInfo.presentationTimeUs * 1000L);
+                            RtspActicity.putData(keyframe, 1, mBufferInfo.presentationTimeUs * 1000L);
                         } else {
-                            VideoActivity.putData(outData, 2, mBufferInfo.presentationTimeUs * 1000L);
+                            Log.e("TAG", "--------FLAGS = " + mBufferInfo.flags);
+                            RtspActicity.putData(outData, 2, mBufferInfo.presentationTimeUs * 1000L);
                         }
 
                     }

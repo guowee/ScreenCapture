@@ -30,7 +30,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  * Created by GuoWee on 2018/6/27.
  */
 
-public class VideoActivity extends AppCompatActivity implements View.OnClickListener {
+public class RtspActicity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int REQUEST_CODE = 1;
     private Button start_record, stop_record;
@@ -76,7 +76,7 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
         @Override
         public void onError(RtspServer server, Exception e, int error) {
             if (error == RtspServer.ERROR_BIND_FAILED) {
-                new AlertDialog.Builder(VideoActivity.this)
+                new AlertDialog.Builder(RtspActicity.this)
                         .setTitle("Port already in use !")
                         .setMessage("You need to choose another port for the RTSP server !")
                         .show();
@@ -89,13 +89,13 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
             if (message == RtspServer.MESSAGE_STREAMING_STARTED) {
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast.makeText(VideoActivity.this, "RTSP STREAM STARTED", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RtspActicity.this, "RTSP STREAM STARTED", Toast.LENGTH_SHORT).show();
                     }
                 });
             } else if (message == RtspServer.MESSAGE_STREAMING_STOPPED) {
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast.makeText(VideoActivity.this, "RTSP STREAM STOPPED", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RtspActicity.this, "RTSP STREAM STOPPED", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

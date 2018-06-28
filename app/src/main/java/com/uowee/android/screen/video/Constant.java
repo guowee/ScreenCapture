@@ -19,5 +19,5 @@ public class Constant {
     public static final int VIDEO_FRAMERATE = 15;
 
     public static final int VIDEO_IFRAME_INTER = 5;
-    public static final int TIMEOUT_USEC = 12000;
+    public static final int TIMEOUT_USEC = 15000;
 }

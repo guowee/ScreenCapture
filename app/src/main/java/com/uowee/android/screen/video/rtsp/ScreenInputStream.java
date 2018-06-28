@@ -1,6 +1,6 @@
 package com.uowee.android.screen.video.rtsp;
 
-import com.uowee.android.screen.video.VideoActivity;
+import com.uowee.android.screen.video.RtspActicity;
 import com.uowee.android.screen.video.media.H264Data;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class ScreenInputStream extends InputStream {
         int min = 0;
 
         if (mBuffer == null) {
-            data = VideoActivity.h264Queue.poll();
+            data = RtspActicity.h264Queue.poll();
             if (data == null) return 0;
             ts = data.ts;
             mBuffer = ByteBuffer.wrap(data.data);

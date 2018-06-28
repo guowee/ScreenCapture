@@ -299,9 +299,12 @@ public class RtspServer extends Service {
             while (!Thread.interrupted()) {
                 try {
                     new WorkerThread(mServer.accept()).start();
+                    Log.e("TAG",">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                 } catch (SocketException e) {
+                    Log.e("TAG",">>>>>>>>>>>>>>>>>>>>>>>>>SocketException>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     break;
                 } catch (IOException e) {
+                    Log.e("TAG",">>>>>>>>>>>>>>>>>>>>>>>>>IOException>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     Log.e(TAG,e.getMessage());
                     continue;
                 }
