@@ -8,7 +8,6 @@ import android.media.MediaFormat;
 import android.media.projection.MediaProjection;
 import android.util.Log;
 import android.view.Surface;
-import android.webkit.WebIconDatabase;
 
 import com.uowee.android.screen.live.core.Packager;
 import com.uowee.android.screen.live.rtmp.RESFlvData;

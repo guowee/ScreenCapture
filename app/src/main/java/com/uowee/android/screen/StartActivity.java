@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.uowee.android.screen.capture.CaptureActivity;
 import com.uowee.android.screen.live.RtmpActivity;
 import com.uowee.android.screen.record.RecorderActivity;
+import com.uowee.android.screen.test.TestActivity;
 import com.uowee.android.screen.video.RtspActicity;
 
 public class StartActivity extends ListActivity {
@@ -17,13 +18,15 @@ public class StartActivity extends ListActivity {
             CaptureActivity.class.getSimpleName(),
             RecorderActivity.class.getSimpleName(),
             RtspActicity.class.getSimpleName(),
-            RtmpActivity.class.getSimpleName()
+            RtmpActivity.class.getSimpleName(),
+            TestActivity.class.getSimpleName()
     };
     private Class[] mActivities = new Class[]{
             CaptureActivity.class,
             RecorderActivity.class,
             RtspActicity.class,
-            RtmpActivity.class
+            RtmpActivity.class,
+            TestActivity.class
     };
 
     @Override
